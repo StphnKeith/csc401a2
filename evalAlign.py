@@ -176,11 +176,10 @@ def main(args):
             # bleu_scores.append(score)
     # Finally write bleu_scores to Task5.txt
 
-    english = []
+    french = []
     with open('/u/cs401/A2_SMT/data/Hansard/Testing/Task5.f') as file:
         for line in file:
-            sentence = preprocess(line, 'f')
-            english.append(decode(sentence, LM_e, AM))
+            french.append(preprocess(line, 'f'))
 
     hansard = []
     with open('/u/cs401/A2_SMT/data/Hansard/Testing/Task5.e') as file:
@@ -197,6 +196,10 @@ def main(args):
     for num_sentences in [1000, 10000, 15000, 30000]:
         print("Align " + str(num_sentences))
         AM = align_ibm1('/u/cs401/A2_SMT/data/Hansard/Training/', num_sentences, MAX_ITER, "align" + str(num_sentences))
+        print("Decoding")
+        english = []
+        for f in french:
+            english.append(decode(sentence, LM_e, AM))
         print("Getting bleu scores for " + str(num_sentences))
         for n in range(1,4):
             score = _get_BLEU_scores(english, hansard, google, n)
