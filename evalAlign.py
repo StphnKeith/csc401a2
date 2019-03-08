@@ -197,7 +197,7 @@ def main(args):
             google.append(preprocess(line, 'e'))
 
     bleu_scores = []
-    MAX_ITER = 10
+    MAX_ITER = 2
     for num_sentences in [1000, 10000, 15000, 30000]:
         print("Align " + str(num_sentences))
         AM = align_ibm1('/u/cs401/A2_SMT/data/Hansard/Training/', num_sentences, MAX_ITER, "align" + str(num_sentences))
@@ -211,9 +211,10 @@ def main(args):
             bleu_scores.append(score)
 
     i = 0
+    lengths = [1000, 10000, 15000, 30000]
     with open("Task5.txt", 'w') as file:
         for line in bleu_scores:
-            file.write(str(num_sentences[i]) + '\n')
+            file.write(str(lengths[i]) + '\n')
             file.write(str(line) + '\n')
             i += 1
 
