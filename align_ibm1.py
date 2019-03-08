@@ -300,6 +300,6 @@ def correct_em_step(t, eng, fre):
 
     for e in TCount.keys():
         for f in TCount[e].keys():
-            AM[e][f] = TCount[e][f] / Total[e]
+            AM[e][f] = TCount[e][f] / Total[f]
 
     return AM

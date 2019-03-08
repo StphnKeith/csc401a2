@@ -7,3 +7,17 @@ analysis for task 3
 analysis for task 5
 remove TODOs
 remove prints
+
+
+from align_ibm1 import *
+eng1 = [['SENTSTART', 'blue', 'house', 'SENTEND'], ['SENTSTART','the', 'house', 'SENTEND']]
+fre1 = [['SENTSTART', 'bleue', 'maison', 'SENTEND'], ['SENTSTART', 'la', 'maison', 'SENTEND']]
+AM = initialize(eng1, fre1)
+em_step(AM, eng1, fre1)
+correct_em_step(AM, eng1, fre1)
+
+eng2 = [['blue', 'house'], ['the', 'house',]]
+fre2 = [['bleue', 'maison'], ['la', 'maison']]
+AM = initialize(eng2, fre2)
+em_step(AM, eng2, fre2)
+correct_em_step(AM, eng2, fre2)
