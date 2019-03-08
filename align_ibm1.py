@@ -130,8 +130,8 @@ def read_hansard(train_dir, num_sentences):
                         return (eng, fre)
 
                     # Process and split sentences
-                    E = preprocess(E.rstrip())
-                    F = preprocess(F.rstrip())
+                    E = preprocess(E.rstrip(), 'e')
+                    F = preprocess(F.rstrip(), 'f')
 
                     E_words = E.split()
                     F_words = F.split()
