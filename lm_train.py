@@ -75,7 +75,7 @@ def lm_train(data_dir, language, fn_LM):
                         else:
                             bigram[word][next_word] += 1
 
-                word = words[len(words)]
+                word = words[len(words) - 1]
                 if word not in unigram:
                     unigram[word] = 1
                 else:
