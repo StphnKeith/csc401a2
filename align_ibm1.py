@@ -191,9 +191,9 @@ def initialize(eng, fre):
         AM[e] = dict.fromkeys( AM[e], 1 / len(AM[e]) )
 
     if 'SENTSTART' in AM.keys() and 'SENTEND' in AM.keys():
-        AM['SENTSTART'] = {}
+        AM['SENTSTART'] = {dict.fromkeys(AM['SENTSTART'], 0.0000001)}
         AM['SENTSTART']['SENTSTART'] = 1
-        AM['SENTEND'] = {}
+        AM['SENTEND'] = dict.fromkeys(AM['SENTEND'], 0.0000001)
         AM['SENTEND']['SENTEND'] = 1
 
     return AM
