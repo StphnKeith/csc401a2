@@ -158,10 +158,13 @@ def main(args):
             perps.append(preplexity(lm[0], '/u/cs401/A2_SMT/data/Hansard/Testing', lm[1], smoothing = True, delta = d))
         t3.append(perps)
 
-    d = 0.0
+    k = 0
     with open("Task3.txt", 'w') as file:
         for line in t3:
-            file.write(str(d) + '\n')
+            if k == 0:
+                file.write('e\n')
+            else:
+                file.write('f\n')
             file.write(str(line) + '\n')
             d += 0.2
 
