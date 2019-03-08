@@ -98,7 +98,7 @@ def read_hansard(train_dir, num_sentences):
 
         # First set up and validate the files
         file_name, extension = os.path.splitext(file)
-        file_name, file_id = os.path.splitext(path)
+        file_name, file_id = os.path.splitext(file_name)
 
         # Skip if not .e or .f file
         if not (extension == '.f' or extension == '.e'):
@@ -135,11 +135,6 @@ def read_hansard(train_dir, num_sentences):
 
                     E_words = E.split()
                     F_words = F.split()
-                    
-                    E_words.remove('SENTSTART')
-                    E_words.remove('SENTEND')
-                    F_words.remove('SENTSTART')
-                    F_words.remove('SENTEND')
 
                     eng[count] = E_words
                     fre[count] = F_words
@@ -270,36 +265,5 @@ def em_step(t, eng, fre):
     for e in Total.keys():
         for f in TCount[e].keys():
             AM[e][f] = TCount[e][f] / Total[e]
-
-    return AM
-
-def correct_em_step(t, eng, fre):
-    AM = dict.fromkeys(t.keys(), 0)
-    Total = {}
-    TCount = dict.fromkeys(t.keys(), 0)
-    STotal = dict.fromkeys(t.keys(), 0)
-    for key in TCount.keys():
-        TCount[key] = dict.fromkeys(t[key].keys(), 0)
-        AM[key] = dict.fromkeys(t[key].keys(), 0)
-
-    num_sentences = min(len(eng), len(fre))
-    for i in range(0, num_sentences):
-        E = eng[i]
-        F = fre[i]
-        for e in E:
-            STotal[e] = 0
-            for f in F:
-                STotal[e] += t[e][f]
-
-        for e in E:
-            for f in F:
-                TCount[e][f] += t[e][f] / STotal[e]
-                if f not in Total.keys():
-                    Total[f] = 0
-                Total[f] += t[e][f] / STotal[e]
-
-    for e in TCount.keys():
-        for f in TCount[e].keys():
-            AM[e][f] = TCount[e][f] / Total[f]
 
     return AM

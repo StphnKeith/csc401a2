@@ -1,5 +1,4 @@
 eval_align
-correct em_step
 test before running
 add print statements before running
 run
@@ -7,9 +6,11 @@ analysis for task 3
 analysis for task 5
 remove TODOs
 remove prints
+remove and fix comments
 
 
 from align_ibm1 import *
+
 eng1 = [['SENTSTART', 'blue', 'house', 'SENTEND'], ['SENTSTART','the', 'house', 'SENTEND']]
 fre1 = [['SENTSTART', 'bleue', 'maison', 'SENTEND'], ['SENTSTART', 'la', 'maison', 'SENTEND']]
 AM = initialize(eng1, fre1)
