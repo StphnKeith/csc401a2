@@ -57,7 +57,7 @@ def lm_train(data_dir, language, fn_LM):
         file_path = os.path.join(data_dir, file)
         with open(file_path) as lines:
             for line in lines:
-                words = preprocess(line.rstrip()).split()
+                words = preprocess(line.rstrip(), language).split()
                 for i in range(0,len(words)):
                     word = words[i]
                     next_word = words[i+1]
