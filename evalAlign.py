@@ -151,9 +151,9 @@ def main(args):
     t3 = []
     for lm in [(LM_e, 'e'), (LM_f, 'f')]:
         perps = []
-        perps.append(preplexity(lm[0], '/u/cs401/A2_SMT/data/Hansard/Testing', lm[1], smoothing = False, delta = 0))
+        perps.append(perplexity(lm[0], '/u/cs401/A2_SMT/data/Hansard/Testing', lm[1], smoothing = False, delta = 0))
         for d in [0, 0.2, 0.4, 0.6, 0.8, 1.0]:
-            perps.append(preplexity(lm[0], '/u/cs401/A2_SMT/data/Hansard/Testing', lm[1], smoothing = True, delta = d))
+            perps.append(perplexity(lm[0], '/u/cs401/A2_SMT/data/Hansard/Testing', lm[1], smoothing = True, delta = d))
         t3.append(perps)
 
     with open("Task3.txt", 'w') as file:
