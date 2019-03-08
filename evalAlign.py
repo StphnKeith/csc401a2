@@ -210,12 +210,15 @@ def main(args):
             score = _get_BLEU_scores(english, hansard, google, n)
             bleu_scores.append(score)
 
-    i = 0
+    i = 1
+    j = 0
     lengths = [1000, 10000, 15000, 30000]
     with open("Task5.txt", 'w') as file:
         for line in bleu_scores:
-            file.write(str(lengths[i]) + " " + str((i%4)+1) + '\n')
+            file.write(str(lengths[j]) + " " + str(((i-1)%4)+1) + '\n')
             file.write(str(line) + '\n')
+            if (i % 4) == 0:
+                j += 1
             i += 1
 
 
