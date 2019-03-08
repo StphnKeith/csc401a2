@@ -50,9 +50,9 @@ def log_prob(sentence, LM, smoothing=False, delta=0, vocabSize=0):
             bi_count = delta
 
         if uni_count == 0 or bi_count == 0:
-            log_prob = float('-inf')
+            return float('-inf')
         else:
             est = bi_count / uni_count
-            log_prob = log(est, 2)
+            log_prob += log(est, 2)
 
     return log_prob

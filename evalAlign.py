@@ -166,7 +166,7 @@ def main(args):
             else:
                 file.write('f\n')
             file.write(str(line) + '\n')
-            d += 0.2
+            k += 1
 
     # Task 5
     # AMs = []
