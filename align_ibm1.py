@@ -187,9 +187,9 @@ def initialize(eng, fre):
     for e in AM.keys():
         AM[e] = dict.fromkeys( AM[e], 1 / len(AM[e]) )
 
-    AM['SENTSTART'] = {}
+    AM['SENTSTART'] = dict.fromkeys(AM['SENTSTART'], 0)
     AM['SENTSTART']['SENTSTART'] = 1
-    AM['SENTEND'] = {}
+    AM['SENTEND'] = dict.fromkeys(AM['SENTEND'], 0)
     AM['SENTEND']['SENTEND'] = 1
 
     return AM
