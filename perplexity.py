@@ -3,7 +3,7 @@ from preprocess import *
 import os
 
 def preplexity(LM, test_dir, language, smoothing = False, delta = 0):
-"""
+    """
     Computes the preplexity of language model given a test corpus
     
     INPUT:
