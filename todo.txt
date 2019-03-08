@@ -1,0 +1,9 @@
+eval_align
+correct em_step
+test before running
+add print statements before running
+run
+analysis for task 3
+analysis for task 5
+remove TODOs
+remove prints
