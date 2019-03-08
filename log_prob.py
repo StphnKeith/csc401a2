@@ -43,7 +43,7 @@ def log_prob(sentence, LM, smoothing=False, delta=0, vocabSize=0):
         else:
             uni_count = delta * vocabSize
 
-        print("Word: " + word + ", Next_Word: " + next_word)
+        # print("Word: " + word + ", Next_Word: " + next_word)
         if word in LM['bi'].keys() and next_word in LM['bi'][word].keys():
             bi_count = LM['bi'][word][next_word] + delta
         else:
