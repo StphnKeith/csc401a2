@@ -92,57 +92,57 @@ def read_hansard(train_dir, num_sentences):
     #     for file in files:
 
     files = os.listdir(train_dir)
-        for file in files:
+    for file in files:
 
-            # First set up and validate the files
-            file_name, extension = os.path.splitext(file)
-            file_name, file_id = os.path.splitext(path)
+        # First set up and validate the files
+        file_name, extension = os.path.splitext(file)
+        file_name, file_id = os.path.splitext(path)
 
-            # Skip if not .e or .f file
-            if not (extension == '.f' or extension == '.e'):
-                continue
+        # Skip if not .e or .f file
+        if not (extension == '.f' or extension == '.e'):
+            continue
 
-            # Skip if already examined this file pair
-            if file_id in files_examined:
-                continue
+        # Skip if already examined this file pair
+        if file_id in files_examined:
+            continue
 
-            # Skip if either language file is not available
-            eng_file = file_name + file_id + '.e'
-            fre_file = file_name + file_id + '.f'
-            if eng_file not in files or fre_file not in files:
-                continue
+        # Skip if either language file is not available
+        eng_file = file_name + file_id + '.e'
+        fre_file = file_name + file_id + '.f'
+        if eng_file not in files or fre_file not in files:
+            continue
 
-            # If it reaches here we know we can process it
-            files_examined.add(file_id)
-            print( "Processing " + file_id)
+        # If it reaches here we know we can process it
+        files_examined.add(file_id)
+        print( "Processing " + file_id)
 
-            # Finally open files and iterate simultaneously
-            eng_path = os.path.join(train_dir, eng_file)
-            fre_path = os.path.join(train_dir, fre_file)
-            with open(eng_path) as english:
-                with open(fre_file) as french:
-                    for E, F in zip(english, french):
+        # Finally open files and iterate simultaneously
+        eng_path = os.path.join(train_dir, eng_file)
+        fre_path = os.path.join(train_dir, fre_file)
+        with open(eng_path) as english:
+            with open(fre_file) as french:
+                for E, F in zip(english, french):
 
-                        # Stop when limit reached
-                        if count >= num_sentences:
-                            return (eng, fre)
+                    # Stop when limit reached
+                    if count >= num_sentences:
+                        return (eng, fre)
 
-                        # Process and split sentences
-                        E = preprocess(E.rstrip())
-                        F = preprocess(F.rstrip())
+                    # Process and split sentences
+                    E = preprocess(E.rstrip())
+                    F = preprocess(F.rstrip())
 
-                        E_words = E.split()
-                        F_words = F.split()
-                        
-                        E_words.remove('SENTSTART')
-                        E_words.remove('SENTEND')
-                        F_words.remove('SENTSTART')
-                        F_words.remove('SENTEND')
+                    E_words = E.split()
+                    F_words = F.split()
+                    
+                    E_words.remove('SENTSTART')
+                    E_words.remove('SENTEND')
+                    F_words.remove('SENTSTART')
+                    F_words.remove('SENTEND')
 
-                        eng[count] = E_words
-                        fre[count] = F_words
+                    eng[count] = E_words
+                    fre[count] = F_words
 
-                        count += 1
+                    count += 1
 
     return (eng, fre)
 
