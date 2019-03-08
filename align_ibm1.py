@@ -40,6 +40,10 @@ def align_ibm1(train_dir, num_sentences, max_iter, fn_AM):
         print("Step " + str(i+1))
         AM = em_step(AM, eng, fre)
 
+    #Save Model
+    with open(fn_AM+'.pickle', 'wb') as handle:
+        pickle.dump(AM, handle, protocol=pickle.HIGHEST_PROTOCOL)
+
     return AM
     
 # ------------ Support functions --------------
