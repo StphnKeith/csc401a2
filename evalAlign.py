@@ -154,13 +154,16 @@ def main(args):
         perps = []
         print("Perplexity for " + lm[1])
         perps.append(preplexity(lm[0], '/u/cs401/A2_SMT/data/Hansard/Testing', lm[1], smoothing = False, delta = 0))
-        for d in [0, 0.2, 0.4, 0.6, 0.8, 1.0]:
+        for d in [0.2, 0.4, 0.6, 0.8, 1.0]:
             perps.append(preplexity(lm[0], '/u/cs401/A2_SMT/data/Hansard/Testing', lm[1], smoothing = True, delta = d))
         t3.append(perps)
 
+    d = 0.0
     with open("Task3.txt", 'w') as file:
         for line in t3:
-            file.write(str(line))
+            file.write(str(d) + '\n')
+            file.write(str(line) + '\n')
+            d += 0.2
 
     # Task 5
     # AMs = []
@@ -207,9 +210,12 @@ def main(args):
             score = _get_BLEU_scores(english, hansard, google, n)
             bleu_scores.append(score)
 
+    i = 0
     with open("Task5.txt", 'w') as file:
         for line in bleu_scores:
-            file.write(str(line))
+            file.write(str(num_sentences[i]) + '\n')
+            file.write(str(line) + '\n')
+            i += 1
 
 
 
