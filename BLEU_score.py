@@ -1,6 +1,6 @@
 import math
 
-def brevity_pentalty(candidate, references):
+def brevity_penalty(candidate, references):
     cand_words = candidate.split()
 
     BP = 1
@@ -46,13 +46,13 @@ def BLEU_score(candidate, references, n, brevity=False):
     OUTPUT:
     bleu_score :    (float) The BLEU score
     """
-    
     #TODO: Implement by student.
 
-    # There is no capping.
-    # We have one candidate.
     cand_words = candidate.split()
-
+    if n > len(cand_words):
+        # This should never happen
+        return 0
+        
     # Calculate the brevity penalty
     BP = 1
     if brevity:
