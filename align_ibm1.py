@@ -266,9 +266,9 @@ def em_step(t, eng, fre):
             for e in E_uniques:
                 TCount[e][f] += t[e][f] * F.count(f) * E.count(e) / denom_c
                 Total[e] += t[e][f] * F.count(f) * E.count(e) / denom_c
-        for e in Total.keys():
-            for f in TCount[e].keys():
-                AM[e][f] = TCount[e][f] / Total[e]
+    for e in Total.keys():
+        for f in TCount[e].keys():
+            AM[e][f] = TCount[e][f] / Total[e]
 
     return AM
 
@@ -297,8 +297,8 @@ def correct_em_step(t, eng, fre):
                     Total[f] = 0
                 Total[f] += t[e][f] / STotal[e]
 
-        for e in Total.keys():
-            for f in TCount[e].keys():
-                AM[e][f] = TCount[e][f] / Total[e]
+    for e in Total.keys():
+        for f in TCount[e].keys():
+            AM[e][f] = TCount[e][f] / Total[e]
 
     return AM
