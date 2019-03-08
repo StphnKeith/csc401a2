@@ -81,7 +81,7 @@ def lm_train(data_dir, language, fn_LM):
                 else:
                     unigram[word] += 1
 
-    language_model = { 'uni': uni_dict, 'bi': bi_dict }
+    language_model = { 'uni': unigram, 'bi': bigram }
 
     #Save Model
     with open(fn_LM+'.pickle', 'wb') as handle:
