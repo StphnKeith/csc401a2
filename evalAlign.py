@@ -200,7 +200,7 @@ def main(args):
             google.append(preprocess(line, 'e'))
 
     bleu_scores = []
-    MAX_ITER = 100
+    MAX_ITER = 1000
     for num_sentences in [1000, 10000, 15000, 30000]:
         print("Align " + str(num_sentences))
         AM = align_ibm1('/u/cs401/A2_SMT/data/Hansard/Training/', num_sentences, MAX_ITER, "align" + str(num_sentences))
