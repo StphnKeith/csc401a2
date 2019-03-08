@@ -49,7 +49,7 @@ def log_prob(sentence, LM, smoothing=False, delta=0, vocabSize=0):
         else:
             bi_count = delta
 
-        if delta == 0 and uni_count == 0:
+        if uni_count == 0 or bi_count == 0:
             log_prob = float('-inf')
         else:
             est = bi_count / uni_count
