@@ -48,32 +48,32 @@ def lm_train(data_dir, language, fn_LM):
     bigram = {}
 
     files = os.listdir(data_dir)
-        for file in files:
-            # Validate extension
-            file_name, extension = os.path.splitext(file)
-            if not extension == ('.' + language):
-                continue
+    for file in files:
+        # Validate extension
+        file_name, extension = os.path.splitext(file)
+        if not extension == ('.' + language):
+            continue
 
-            file_path = os.path.join(data_dir, file)
-            with open(file_path) as lines:
-                for line in lines:
-                    words = preprocess(line.rstrip()).split()
-                    for i in range(0,len(words)):
-                        word = words[i]
-                        next_word = words[i+1]
+        file_path = os.path.join(data_dir, file)
+        with open(file_path) as lines:
+            for line in lines:
+                words = preprocess(line.rstrip()).split()
+                for i in range(0,len(words)):
+                    word = words[i]
+                    next_word = words[i+1]
 
-                        if word not in unigram:
-                            unigram[word] = 1
+                    if word not in unigram:
+                        unigram[word] = 1
+                    else:
+                        unigram[word] += 1
+
+                    if word not in bigram:
+                        bigram[word] = {next_word: 1}
+                    else:
+                        if next_word not in bigram[word]:
+                            bigram[word][next_word] = 1
                         else:
-                            unigram[word] += 1
-
-                        if word not in bigram:
-                            bigram[word] = {next_word: 1}
-                        else:
-                            if next_word not in bigram[word]:
-                                bigram[word][next_word] = 1
-                            else:
-                                bigram[word][next_word] += 1
+                            bigram[word][next_word] += 1
 
     language_model = { 'uni': uni_dict, 'bi': bi_dict }
 
