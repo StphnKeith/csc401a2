@@ -38,6 +38,7 @@ def log_prob(sentence, LM, smoothing=False, delta=0, vocabSize=0):
         word = words[i]
         next_word = words[i+1]
         uni_count = LM['uni'][word]
+        print("Word: " + word + ", Next_Word: " + next_word)
         bi_count = LM['bi'][word][next_word]
         if delta == 0 and uni_count == 0:
             log_prob = float('-inf')
