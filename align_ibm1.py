@@ -187,10 +187,11 @@ def initialize(eng, fre):
     for e in AM.keys():
         AM[e] = dict.fromkeys( AM[e], 1 / len(AM[e]) )
 
-    AM['SENTSTART'] = dict.fromkeys(AM['SENTSTART'], 0)
-    AM['SENTSTART']['SENTSTART'] = 1
-    AM['SENTEND'] = dict.fromkeys(AM['SENTEND'], 0)
-    AM['SENTEND']['SENTEND'] = 1
+    if 'SENTSTART' in AM.keys() and 'SENTEND' in AM.keys():
+        AM['SENTSTART'] = dict.fromkeys(AM['SENTSTART'], 0)
+        AM['SENTSTART']['SENTSTART'] = 1
+        AM['SENTEND'] = dict.fromkeys(AM['SENTEND'], 0)
+        AM['SENTEND']['SENTEND'] = 1
 
     return AM
     
@@ -297,7 +298,7 @@ def correct_em_step(t, eng, fre):
                     Total[f] = 0
                 Total[f] += t[e][f] / STotal[e]
 
-    for e in Total.keys():
+    for e in TCount.keys():
         for f in TCount[e].keys():
             AM[e][f] = TCount[e][f] / Total[e]
 
