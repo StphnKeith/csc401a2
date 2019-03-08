@@ -1,4 +1,5 @@
 eval_align
+save alignment model in align_ibm1
 test before running
 add print statements before running
 run
@@ -22,3 +23,17 @@ fre2 = [['bleue', 'maison'], ['la', 'maison']]
 AM = initialize(eng2, fre2)
 em_step(AM, eng2, fre2)
 correct_em_step(AM, eng2, fre2)
+
+
+from BLEU_score import *
+refs = ['It is a guide to action that ensures that the military will forever heed Party commands', 'It is the guiding principle which guarantees the military forces always being under command of the Party', 'It is the practical guide for the army always to heed the directions of the party']
+c1 = "It is a guide to action which ensures that the military always obeys the commands of the party"
+c2 = "It is to insure the troops forever hearing the activity guidebook that party direct"
+
+from lm_train import *
+lm_train('/u/cs401/A2_SMT/data/Toy/', 'e', 'toy')
+
+A B C
+A B
+B C
+D F

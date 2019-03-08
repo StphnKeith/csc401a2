@@ -46,6 +46,7 @@ def lm_train(data_dir, language, fn_LM):
 
     unigram = {}
     bigram = {}
+    file_count = 0
 
     files = os.listdir(data_dir)
     for file in files:
@@ -80,6 +81,9 @@ def lm_train(data_dir, language, fn_LM):
                     unigram[word] = 1
                 else:
                     unigram[word] += 1
+
+        file_count += 1
+        print(file_count)
 
     language_model = { 'uni': unigram, 'bi': bigram }
 
