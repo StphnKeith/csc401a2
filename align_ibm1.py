@@ -185,7 +185,7 @@ def initialize(eng, fre):
                 AM[e][f] = 0
 
     for e in AM.keys():
-        AM[e] = dict.fromkeys( AM[eng_word], 1 / len(AM[eng_word]) )
+        AM[e] = dict.fromkeys( AM[e], 1 / len(AM[e]) )
 
     AM['SENTSTART'] = {}
     AM['SENTSTART']['SENTSTART'] = 1
