@@ -37,13 +37,22 @@ def log_prob(sentence, LM, smoothing=False, delta=0, vocabSize=0):
     for i in range(0,len(words) - 1):
         word = words[i]
         next_word = words[i+1]
-        uni_count = LM['uni'][word]
+
+        if word in LM['uni'].keys():
+            uni_count = LM['uni'][word] + (delta * vocabSize)
+        else:
+            uni_count = delta * vocabSize
+
         print("Word: " + word + ", Next_Word: " + next_word)
-        bi_count = LM['bi'][word][next_word]
+        if word in LM['bi'].keys() and next_word in LM['bi'][word].keys():
+            bi_count = LM['bi'][word][next_word] + delta
+        else:
+            bi_count = delta
+
         if delta == 0 and uni_count == 0:
             log_prob = float('-inf')
         else:
-            est = (bi_count + delta) / ( uni_count + (delta * vocabSize) )
+            est = bi_count / uni_count
             log_prob = log(est, 2)
 
     return log_prob
