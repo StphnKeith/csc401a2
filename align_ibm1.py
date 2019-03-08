@@ -136,8 +136,8 @@ def read_hansard(train_dir, num_sentences):
                     E_words = E.split()
                     F_words = F.split()
 
-                    eng[count] = E_words
-                    fre[count] = F_words
+                    eng.append(E_words)
+                    fre.append(F_words)
 
                     count += 1
 
