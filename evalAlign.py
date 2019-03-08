@@ -214,7 +214,7 @@ def main(args):
     lengths = [1000, 10000, 15000, 30000]
     with open("Task5.txt", 'w') as file:
         for line in bleu_scores:
-            file.write(str(lengths[i]) + '\n')
+            file.write(str(lengths[i]) + " " + str((i%4)+1) + '\n')
             file.write(str(line) + '\n')
             i += 1
 
