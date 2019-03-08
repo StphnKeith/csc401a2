@@ -25,7 +25,8 @@ def preplexity(LM, test_dir, language, smoothing = False, delta = 0):
         if ffile.split(".")[-1] != language:
             continue
         
-        opened_file = open(test_dir+ffile, "r")
+        file_path = os.path.join(test_dir,ffile)
+        opened_file = open(file_path, "r")
         for line in opened_file:
             processed_line = preprocess(line, language)
             tpp = log_prob(processed_line, LM, smoothing, delta, vocab_size)
