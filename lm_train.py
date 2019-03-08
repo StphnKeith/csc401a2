@@ -58,7 +58,7 @@ def lm_train(data_dir, language, fn_LM):
         with open(file_path) as lines:
             for line in lines:
                 words = preprocess(line.rstrip(), language).split()
-                for i in range(0,len(words)):
+                for i in range(0,len(words) - 1):
                     word = words[i]
                     next_word = words[i+1]
 
@@ -74,6 +74,12 @@ def lm_train(data_dir, language, fn_LM):
                             bigram[word][next_word] = 1
                         else:
                             bigram[word][next_word] += 1
+
+                word = words[len(words)]
+                if word not in unigram:
+                    unigram[word] = 1
+                else:
+                    unigram[word] += 1
 
     language_model = { 'uni': uni_dict, 'bi': bi_dict }
 
