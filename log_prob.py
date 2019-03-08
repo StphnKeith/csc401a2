@@ -34,6 +34,7 @@ def log_prob(sentence, LM, smoothing=False, delta=0, vocabSize=0):
     words = sentence.split()
 
     # No bigram to process for last word, so iterate length - 1
+    log_prob = 0
     for i in range(0,len(words) - 1):
         word = words[i]
         next_word = words[i+1]
