@@ -39,10 +39,10 @@ def log_prob(sentence, LM, smoothing=False, delta=0, vocabSize=0):
         next_word = words[i+1]
         uni_count = LM['uni'][word]
         bi_count = LM['bi'][word][next_word]
-        if delta == 0 and bi_count == 0:
+        if delta == 0 and uni_count == 0:
             log_prob = float('-inf')
         else:
-            est = (uni_count + delta) / ( bi_count + (delta * vocabSize) )
+            est = (bi_count + delta) / ( uni_count + (delta * vocabSize) )
             log_prob = log(est, 2)
 
     return log_prob
