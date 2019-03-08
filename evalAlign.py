@@ -201,7 +201,7 @@ def main(args):
         print("Decoding")
         english = []
         for f in french:
-            english.append(decode(f, LM_e, AM))
+            english.append(decode.decode(f, LM_e, AM))
         print("Getting bleu scores for " + str(num_sentences))
         for n in range(1,4):
             score = _get_BLEU_scores(english, hansard, google, n)
