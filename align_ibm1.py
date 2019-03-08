@@ -122,7 +122,7 @@ def read_hansard(train_dir, num_sentences):
         eng_path = os.path.join(train_dir, eng_file)
         fre_path = os.path.join(train_dir, fre_file)
         with open(eng_path) as english:
-            with open(fre_file) as french:
+            with open(fre_path) as french:
                 for E, F in zip(english, french):
 
                     # Stop when limit reached
