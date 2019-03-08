@@ -152,6 +152,7 @@ def main(args):
     t3 = []
     for lm in [(LM_e, 'e'), (LM_f, 'f')]:
         perps = []
+        print("Perplexity for " + lm[1])
         perps.append(preplexity(lm[0], '/u/cs401/A2_SMT/data/Hansard/Testing', lm[1], smoothing = False, delta = 0))
         for d in [0, 0.2, 0.4, 0.6, 0.8, 1.0]:
             perps.append(preplexity(lm[0], '/u/cs401/A2_SMT/data/Hansard/Testing', lm[1], smoothing = True, delta = d))
@@ -176,6 +177,7 @@ def main(args):
             # bleu_scores.append(score)
     # Finally write bleu_scores to Task5.txt
 
+    print("Task 5")
     french = []
     with open('/u/cs401/A2_SMT/data/Hansard/Testing/Task5.f') as file:
         for line in file:
@@ -199,7 +201,7 @@ def main(args):
         print("Decoding")
         english = []
         for f in french:
-            english.append(decode(sentence, LM_e, AM))
+            english.append(decode(f, LM_e, AM))
         print("Getting bleu scores for " + str(num_sentences))
         for n in range(1,4):
             score = _get_BLEU_scores(english, hansard, google, n)
