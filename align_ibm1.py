@@ -54,6 +54,7 @@ def read_hansard(train_dir, num_sentences):
 	
 	Make sure to read the files in an aligned manner.
 	"""
+    """
     # TODO
     # Get starting files from directory:
         # Get file num
@@ -82,6 +83,7 @@ def read_hansard(train_dir, num_sentences):
         # eng[count] = eng_sentence.split()
         # fre[count] = fre_sentence.split()
     # return (eng, fre)
+    """
 
     files_examined = set()
     count = 0
