@@ -27,13 +27,17 @@ def align_ibm1(train_dir, num_sentences, max_iter, fn_AM):
     AM = {}
     
     # Read training data
+    print("Begin reading")
     eng, fre = read_hansard(train_dir, num_sentences)
     
     # Initialize AM uniformly
+    print("Begin initializing")
     AM = initialize(eng, fre)
     
     # Iterate between E and M steps
+    print("Begin training")
     for i in range(0, max_iter):
+        print("Step " + str(i+1))
         AM = em_step(AM, eng, fre)
 
     return AM
@@ -116,7 +120,7 @@ def read_hansard(train_dir, num_sentences):
 
         # If it reaches here we know we can process it
         files_examined.add(file_id)
-        print( "Processing " + file_id)
+        print( "Reading " + str(count+1))
 
         # Finally open files and iterate simultaneously
         eng_path = os.path.join(train_dir, eng_file)

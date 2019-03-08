@@ -195,6 +195,7 @@ def main(args):
     for num_sentences in [1000, 10000, 15000, 30000]:
         print("Align " + str(num_sentences))
         AM = align_ibm1('/u/cs401/A2_SMT/data/Hansard/Training/', num_sentences, 1000, "align" + str(num_sentences))
+        print("Getting bleu scores for " + str(num_sentences))
         for n in range(1,4):
             score = _get_BLEU_scores(english, hansard, google, n)
             bleu_scores.append(score)
@@ -203,7 +204,7 @@ def main(args):
         for line in bleu_scores:
             file.write(str(line))
 
-    
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Use parser for debugging if needed")
