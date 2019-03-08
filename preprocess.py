@@ -49,7 +49,7 @@ def preprocess(in_sentence, language):
         out_sentence = re.sub(r"(l')", r"\1 ", out_sentence)
 
         # Split 'silent e' consonants
-        # (I don't know any french so I just cover what's in the handout)
+        # (I don't know any french so I just covered what's in the handout)
         out_sentence = re.sub(r"(c'|t'|j')", r"\1 ", out_sentence)
 
         # Split qu'

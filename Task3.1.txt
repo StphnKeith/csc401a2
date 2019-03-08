@@ -1,5 +1,7 @@
-English Perplexities For Delta = 0, 0.2, 0.4, 0.6, 0.8, and 1.0
-[1.014388183177017, 1.0493341338471933, 1.0598059948414014, 1.0677648210697288, 1.0744298126881482, 1.0802633223028717]
+English Perplexities For MLE and Delta = 0.2, 0.4, 0.6, 0.8, and 1.0
+[13.708391831674534, 78.65169349232919, 100.2395020713553, 117.82438833002192, 133.30859483593073, 147.4343489634691]
 
-French Perplexities For Delta = 0, 0.2, 0.4, 0.6, 0.8, and 1.0
-[1.0133937561597393, 1.0496758407654831, 1.0602534733068782, 1.0683556242038812, 1.0751508397532241, 1.0810969003488489]
+French Perplexities For MLE and Delta = 0.2, 0.4, 0.6, 0.8, and 1.0
+[13.28660126758243, 84.49147349189744, 110.13556988056733, 131.26665794411386, 150.03742072572936, 167.27928524610385]
+
+For both languages as delta increases perplexity increases indicating MLE is the best model in this instance. Delta-smoothing helps to deal with unknown words in the model at the cost of distorting the model somewhat. If the model is judged against a corpus where there are few words unknown to the model in the corpus, then delta-smoothing adds little benefit.
