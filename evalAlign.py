@@ -86,7 +86,7 @@ def _get_BLEU_scores(eng_decoded, eng, google_refs, n):
         candidate = eng_decoded[i]
 
         for j in range(1,n+1):
-            bleu_scores[i] *= BLEU_score(candidate, references, n)
+            bleu_scores[i] *= BLEU_score(candidate, references, j)
 
         bleu_scores[i] = bleu_scores[i] ** (1/n)
         bleu_scores[i] *= brevity_penalty(candidate, references)
