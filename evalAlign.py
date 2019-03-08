@@ -37,6 +37,11 @@ def _getLM(data_dir, language, fn_LM, use_cached=True):
     -------
     A language model 
     """
+    # if use_cached:
+        # load from pickle file fn_LM
+    # else:
+        # call lm_train(data_dir, language, fn_LM)
+    # return LM
     pass
 
 def _getAM(data_dir, num_sent, max_iter, fn_AM, use_cached=True):
@@ -53,6 +58,11 @@ def _getAM(data_dir, num_sent, max_iter, fn_AM, use_cached=True):
     -------
     An alignment model 
     """
+    # if use_cached:
+        # load from pickle file fn_AM
+    # else:
+        # call align_ibm1(data_dir, num_sent, max_iter, fn_AM)
+    # return AM
     pass
 
 def _get_BLEU_scores(eng_decoded, eng, google_refs, n):
@@ -68,7 +78,20 @@ def _get_BLEU_scores(eng_decoded, eng, google_refs, n):
     -------
     An array of evaluation (BLEU) scores for the sentences
     """
-    pass
+    # I'm going to assume they mean list when they say array.
+    length = min(len(eng_decoded), len(eng), len(google_refs))
+    bleu_scores = [1] * length
+    for i in range(0,length):
+        references = [eng[i], google_refs[i]]
+        candidate = eng_decoded[i]
+
+        for j in range(1,n+1):
+            bleu_scores[i] *= BLEU_score(candidate, references, n)
+
+        bleu_scores[i] = bleu_scores[i] ** (1/n)
+        bleu_scores[i] *= brevity_penalty(candidate, references)
+
+    return bleu_scores
    
 
 def main(args):

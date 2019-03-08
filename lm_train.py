@@ -27,6 +27,55 @@ def lm_train(data_dir, language, fn_LM):
     """
 	
 	# TODO: Implement Function
+    # Instantiate a unigram dictionary
+    # Instantiate a bigram dictionary of dictionaries
+    # For each file appended with language:
+        # Load preprocessed lines into a list
+        # For each word in the line:
+            # NOTE: include SENTSTART and punctuation, include SENTEND in the
+                # unigram and in the second word of the bigrams
+            # If the word is not in the unigram dictionary:
+                # add it and set its count to 1
+            # Else increment its count by 1
+            # If the word is SENTEND, continue (i.e. end the line loop)
+            # Elif the word and the word after it aren't in the bigram dict:
+                # add them and set their count to 1
+            # Else increment their count by 1
+
+    # language_model = { 'uni': uni_dict, 'bi': bi_dict }
+
+    unigram = {}
+    bigram = {}
+
+    files = os.listdir(data_dir)
+        for file in files:
+            # Validate extension
+            file_name, extension = os.path.splitext(file)
+            if not extension == ('.' + language):
+                continue
+
+            file_path = os.path.join(data_dir, file)
+            with open(file_path) as lines:
+                for line in lines:
+                    words = preprocess(line.rstrip()).split()
+                    for i in range(0,len(words)):
+                        word = words[i]
+                        next_word = words[i+1]
+
+                        if word not in unigram:
+                            unigram[word] = 1
+                        else:
+                            unigram[word] += 1
+
+                        if word not in bigram:
+                            bigram[word] = {next_word: 1}
+                        else:
+                            if next_word not in bigram[word]:
+                                bigram[word][next_word] = 1
+                            else:
+                                bigram[word][next_word] += 1
+
+    language_model = { 'uni': uni_dict, 'bi': bi_dict }
 
     #Save Model
     with open(fn_LM+'.pickle', 'wb') as handle:
